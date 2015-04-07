@@ -1,0 +1,14 @@
+{
+  "name": "fis-module",
+  "version": "2.1.0",
+  "_release": "2.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.0",
+    "commit": "9faa147e4cfc6b852da1c78504c570989e8628ca"
+  },
+  "_source": "http://gitlab.baidu.com/tbfe/fis-module.git",
+  "_target": "~2.1.0",
+  "_originalSource": "http://gitlab.baidu.com/tbfe/fis-module.git",
+  "_direct": true
+}

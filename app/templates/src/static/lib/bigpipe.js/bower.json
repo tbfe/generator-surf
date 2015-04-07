@@ -1,0 +1,24 @@
+{
+  "name": "bigpipe.js",
+  "version": "0.1.0",
+  "authors": [
+    "leeyeh <lee55962698@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "main": "lib",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jasmine": "~2.2.1",
+    "jasmine-jsreporter-real": "*"
+  },
+  "dependencies": {
+    "es6-promise": "~2"
+  }
+}

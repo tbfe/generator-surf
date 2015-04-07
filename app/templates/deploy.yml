@@ -1,0 +1,15 @@
+#部署配置
+
+#部署机器的HOST
+host: tc-testing-sandbox-forum03-vm.epc.baidu.com
+#静态端口
+staticPort: 8090
+#页面访问端口
+tplPort: 8080
+#静态文件部署路径
+staticPath: /home/work/static/static.tieba.baidu.com
+#模版文件部署路径
+tplPath: /home/work/orp/bigpipe
+#地址替换规则
+replace:
+  __foo__|%%foo%%: bar

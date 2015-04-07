@@ -1,0 +1,8 @@
+#模块配置
+
+name: <%=projectName%>
+type: pc
+
+jshintConfig:
+  ignored: 
+  - static/lib/**.js
