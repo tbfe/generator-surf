@@ -35,6 +35,15 @@ Finally, initiate the generator:
 ```bash
 yo surf
 ```
+### 用法
+```bash
+yo surf  根据提示键入你的项目名example:frs
+cd frs
+yo surf:widget  生成widget
+yo surf:pagelet 生成pagelet
+yo surf:page    生成page
+
+```
 
 ### Getting To Know Yeoman
 
