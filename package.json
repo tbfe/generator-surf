@@ -1,0 +1,36 @@
+{
+  "name": "generator-surf",
+  "version": "0.1.4",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "shibiaoz/generator-surf",
+  "author": {
+    "name": "shibiaoz",
+    "email": "shibiaoz@sina.cn",
+    "url": "https://github.com/shibiaoz"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app",
+    "widget",
+    "page",
+    "pagelet"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.18.9",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

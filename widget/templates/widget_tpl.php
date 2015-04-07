@@ -1,3 +1,10 @@
+<?php
+/**
+ * @author: <%=author%>	
+ * @time: <%=date%>
+ * @desp 
+ */ 
+?>
 <div class="<%=widgetName%>">
-I`m Forum Info;
+I`m <%=widgetName%>;
 </div>

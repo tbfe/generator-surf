@@ -1,9 +1,11 @@
 
 <?php
-/** 
- * @author: <%= author%>
+/**
+ * @author: <%=author%>	
+ * @time: <%=date%>
+ * @desp 
  */ 
-class Frs_Widget_<%= widgetName%> extends Tieba_View_Widget {
+class <%=moduleStr%>_Widget_<%= widgetName%> {
 	public function init(){
 		
 	}

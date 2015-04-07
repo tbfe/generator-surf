@@ -7,6 +7,15 @@ module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.projectName = 'test';
+     this.existedProjects = [];
+     var controlFiles = this.expand(this.destinationPath('./*/'));
+     var reg = /\/(\w+)(\/$)/ ;//匹配当期文件夹名
+     this.log(controlFiles);
+     controlFiles.forEach(function(v) {
+     if(v && v.lastIndexOf('/') > -1){
+        this.existedProjects.push(reg.exec(v)[1]);
+     }
+    }.bind(this));
   },
 
   prompting: function () {
@@ -17,22 +26,23 @@ module.exports = yeoman.generators.Base.extend({
       'Welcome to the solid ' + chalk.red('Surf') + ' generator!'
     ));
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    },
-    {
+    var prompts = [
+        {
           type: 'input',
           name: 'projectName',
           message: 'project Name :',
-          default: 'test'
+          default: 'test',
+          validate: function(input) {
+                if (this.existedProjects && this.existedProjects.indexOf(this._.underscored(input)) > -1) {
+                    return input + ' 已存在！';
+                } else {
+                    return true;
+                }
+            }.bind(this)
         }
     ];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
       this.projectName = props.projectName;
       done();
     }.bind(this));
@@ -47,6 +57,7 @@ module.exports = yeoman.generators.Base.extend({
       var pageletPath = projectName + '/src/pagelet/';
       var widgetPath = projectName + '/src/widget/';
       var staticPath = projectName + '/src/static/';
+      var commonConfig = '';
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath( projectName + '/package.json')
@@ -82,11 +93,15 @@ module.exports = yeoman.generators.Base.extend({
       );
 
       //module.yml
+      if(projectName == 'common'){
+        commonConfig = "jshintConfig:\r\nignored:\r\n- static/lib/**.js";
+      }
       this.fs.copyTpl(
         this.templatePath('module.yml'),
         this.destinationPath(projectName + '/module.yml'),
         {
-          projectName:projectName
+          projectName:projectName,
+          commonConfig:commonConfig
         }
       );
 
@@ -171,7 +186,8 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
     this.installDependencies({
-      skipInstall: this.options['skip-install']
+     // skipInstall: this.options['skip-install']
+      skipInstall: false
     });
   }
 });

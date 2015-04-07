@@ -3,6 +3,4 @@
 name: <%=projectName%>
 type: pc
 
-jshintConfig:
-  ignored: 
-  - static/lib/**.js
+<%=commonConfig%>

@@ -1,3 +1,10 @@
+<?php
+/**
+ * @author: <%=author%>	
+ * @time: <%=date%>
+ * @desp 
+ */ 
+?>
 <!doctype html>
 <!--STATUS OK-->
 <html>
