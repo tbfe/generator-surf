@@ -1,5 +1,5 @@
 # generate module code for tbfe
-# generator-surf [![Build Status](https://secure.travis-ci.org/shibiaoz/generator-surf.png?branch=master)](https://travis-ci.org/shibiaoz/generator-surf)
+# generator-surf [Build Status](https://travis-ci.org/shibiaoz/generator-surf)
 
 > [Yeoman](http://yeoman.io) generator
 

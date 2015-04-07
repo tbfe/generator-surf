@@ -7,13 +7,15 @@ module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.projectName = 'test';
-     this.existedProjects = [];
-     var controlFiles = this.expand(this.destinationPath('./*/'));
+    this.existedProjects = [];
+     var controlFiles = this.expand(this.destinationPath('*/'));
      var reg = /\/(\w+)(\/$)/ ;//匹配当期文件夹名
      this.log(controlFiles);
+     var tmp = [];
      controlFiles.forEach(function(v) {
      if(v && v.lastIndexOf('/') > -1){
-        this.existedProjects.push(reg.exec(v)[1]);
+        tmp = reg.exec(v);
+        this.existedProjects.push(tmp && tmp[1]);
      }
     }.bind(this));
   },

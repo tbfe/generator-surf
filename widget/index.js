@@ -2,7 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var astQuery = require('ast-query');
+//var astQuery = require('ast-query');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
