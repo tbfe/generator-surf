@@ -7,6 +7,23 @@ module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.projectName = 'test';
+    this.moduleStr = '';
+    try{
+         this.moduleStr = this.readFileAsString('module.yml');
+    }catch(e){
+         this.log('读取生成模块配置出错，module.yml没找到，你可能执行的命令的路径不对');
+         this.moduleStr = '';
+    }
+    var nameReg = /\s*(name:)(\s+)(\w+)(\r\n)+/;//匹配module.yml中的name
+    var moduleStr = this.moduleStr;
+    var name = nameReg.exec(moduleStr);
+    if(name && name[3]){
+          //匹配的第三个就是模块名
+          this.moduleStr = name[3];
+    }
+    //其实下面的检测没有多大用处了，因为修改了执行的方式，@liye
+    // mkdir aa ,cd aa ,yo surf 这样就不会有模块覆盖的方式问题
+    //这里在上面增加检测覆盖情况，module中配置和输入的项目名一样认为会覆盖，不通过执行，不一样则通过
     this.existedProjects = [];
      var controlFiles = this.expand(this.destinationPath('*/'));
      var reg = /\/(\w+)(\/$)/ ;//匹配当期文件夹名
@@ -22,7 +39,7 @@ module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
-
+    
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the solid ' + chalk.red('Surf') + ' generator!'
@@ -37,7 +54,9 @@ module.exports = yeoman.generators.Base.extend({
           validate: function(input) {
                 if (this.existedProjects && this.existedProjects.indexOf(this._.underscored(input)) > -1) {
                     return input + ' 已存在！';
-                } else {
+                }else if(this.moduleStr == input){
+                    return input + '已经存在module.yml,不应该在新建模块了，如果非要新建，可以删除module.yml在执行';
+                }else {
                     return true;
                 }
             }.bind(this)
@@ -54,19 +73,19 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       // for bigpipe moduel code
       var projectName = this.projectName;
-      var moduleConf = projectName + '/src/conf/';
-      var pagePath = projectName + '/src/page/';
-      var pageletPath = projectName + '/src/pagelet/';
-      var widgetPath = projectName + '/src/widget/';
-      var staticPath = projectName + '/src/static/';
+      var moduleConf =   'src/conf/';
+      var pagePath =   'src/page/';
+      var pageletPath =   'src/pagelet/';
+      var widgetPath =   'src/widget/';
+      var staticPath =   'src/static/';
       var commonConfig = '';
       this.fs.copy(
         this.templatePath('_package.json'),
-        this.destinationPath( projectName + '/package.json')
+        this.destinationPath('/package.json')
       );
       this.fs.copy(
         this.templatePath('_bower.json'),
-        this.destinationPath(projectName + '/bower.json')
+        this.destinationPath('/bower.json')
       );
 
       //__module_conf.php 
@@ -79,19 +98,19 @@ module.exports = yeoman.generators.Base.extend({
       //build.sh 
       this.fs.copy(
         this.templatePath('build.sh'),
-        this.destinationPath(projectName + '/build.sh')
+        this.destinationPath('build.sh')
       );
 
       //dev.sh
       this.fs.copy(
         this.templatePath('dev.sh'),
-        this.destinationPath(projectName + '/dev.sh')
+        this.destinationPath('dev.sh')
       );
 
       //deploy.yml
       this.fs.copy(
         this.templatePath('deploy.yml'),
-        this.destinationPath(projectName+'/deploy.yml')
+        this.destinationPath('deploy.yml')
       );
 
       //module.yml
@@ -100,7 +119,7 @@ module.exports = yeoman.generators.Base.extend({
       }
       this.fs.copyTpl(
         this.templatePath('module.yml'),
-        this.destinationPath(projectName + '/module.yml'),
+        this.destinationPath('module.yml'),
         {
           projectName:projectName,
           commonConfig:commonConfig
@@ -177,11 +196,11 @@ module.exports = yeoman.generators.Base.extend({
 
       this.fs.copy(
         this.templatePath('editorconfig'),
-        this.destinationPath(projectName + '/.editorconfig')
+        this.destinationPath('.editorconfig')
       );
       this.fs.copy(
         this.templatePath('jshintrc'),
-        this.destinationPath(projectName + '/.jshintrc')
+        this.destinationPath('/.jshintrc')
       );
     }
   },
