@@ -10,7 +10,6 @@ module.exports = yeoman.generators.Base.extend({
       this.widgetName = '';
       this.moduleName = '';
       this.author = '';
-      //var aa = this.expand(this.destinationPath('./*'));//执行当前命令的所有
       var moduleStr  = '';
       try{
          this.moduleStr = this.readFileAsString('module.yml');
@@ -96,20 +95,6 @@ module.exports = yeoman.generators.Base.extend({
         }
         this.moduleName = moduleName;
 
-        //read som config from module.yml
-        // var deployConfFile = this.expand(this.destinationPath('module.yml'));
-        // var modName = '';
-        // console.log("读取路径",deployConfFile);
-        // if (deployConfFile.length > 0) {
-        //   //var deployConfTree = astQuery(this.readFileAsString(this.destinationPath('module.yml')));
-        //   var str = this.readFileAsString(deployConfFile);
-        //   console.log('=====================');
-        //   console.log(str);
-        //   //  var deployConfBody = deployConfTree.assignment('module.exports').nodes[0].right.properties;
-        //   //modName = deployConfBody[1].value.value;
-        // }
-
-
         if(moduleName){
            moduleStr = moduleName.charAt(0).toUpperCase()+moduleName.substr(1);
         }
@@ -123,7 +108,6 @@ module.exports = yeoman.generators.Base.extend({
 
         var fileConf =  {author:author,capWidgetName:str,widgetName:widgetName,moduleStr:moduleStr,date:date};
         widgetTypes.forEach(function(value,index){
-         // this.log('widget_tpl'+value.substr(6)+'=========================')
           this.fs.copyTpl(
             this.templatePath('widget_tpl'+value.substr(6)),
             this.destinationPath('src/widget/'+widgetName+'/'+widgetName+value.substr(6)),
@@ -131,42 +115,8 @@ module.exports = yeoman.generators.Base.extend({
           );
         }.bind(this));
 
-        // this.fs.copyTpl(
-        //   this.templatePath('widget_tpl.class.php'),
-        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.class.php'),
-        //   {author:author,capWidgetName:str,moduleStr:moduleStr,date:date}
-        // );
-        // this.fs.copyTpl(
-        //   this.templatePath('widget_tpl.php'),
-        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.php'),
-        //   {author:author,widgetName:widgetName,capWidgetName:str,date:date}
-        // );
-
-        // this.fs.copyTpl(
-        //   this.templatePath('widget_tpl.js'),
-        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.js'),
-        //   {author:author,widgetName:widgetName,capWidgetName:str,date:date}
-        // );
-
-        // this.fs.copyTpl(
-        //   this.templatePath('widget_tpl.less'),
-        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.less'),
-        //    {author:author,widgetName:widgetName,capWidgetName:str,date:date}
-        // );
-
         this.mkdir('src/widget/'+widgetName+'/image');
     }
-
-    // projectfiles: function () {
-    //   this.fs.copy(
-    //     this.templatePath('editorconfig'),
-    //     this.destinationPath('.editorconfig')
-    //   );
-    //   this.fs.copy(
-    //     this.templatePath('jshintrc'),
-    //     this.destinationPath('.jshintrc')
-    //   );
-    // }
   },
 
   end:function  () {
