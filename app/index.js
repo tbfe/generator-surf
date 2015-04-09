@@ -90,11 +90,7 @@ module.exports = yeoman.generators.Base.extend({
 
       //__module_conf.php 
       this.mkdir(moduleConf);
-      // this.fs.copy(
-      //   this.templatePath('src/module_conf/__module_conf.php'),
-      //   this.destinationPath(moduleConf + '__module_conf.php')
-      // );
-
+    
       //build.sh 
       this.fs.copy(
         this.templatePath('build.sh'),
@@ -134,63 +130,13 @@ module.exports = yeoman.generators.Base.extend({
 
       //page 
       this.mkdir(pagePath);
-      // this.fs.copyTpl(
-      //    this.templatePath('src/page/page/page.css'),
-      //    this.destinationPath(pagePath + 'page/page.css')
-      // );
-      // this.fs.copyTpl(
-      //    this.templatePath('src/page/page/page.js'),
-      //    this.destinationPath(pagePath + 'page/page.js')
-      // );
-      // this.fs.copyTpl(
-      //    this.templatePath('src/page/page/page.php'),
-      //    this.destinationPath(pagePath + 'page/page.php')
-      // );
 
       //pagelet ----projectName + '/pagelet/';
       this.mkdir(pageletPath);
-      // this.fs.copyTpl(
-      //    this.templatePath('src/pagelet/footer/footer.php'),
-      //    this.destinationPath(pageletPath + 'footer/footer.php')
-      // );
 
       //widget --projectName + '/widget/';
       this.mkdir(widgetPath);
-      //footer
-      // this.fs.copy(
-      //   this.templatePath('src/widget/footer/footer.class.php'),
-      //   this.destinationPath(widgetPath + 'footer/footer.class.php')
-      // );
-      // this.fs.copy(
-      //   this.templatePath('src/widget/footer/footer.css'),
-      //   this.destinationPath(widgetPath + 'footer/footer.css')
-      // );
-      // this.fs.copy(
-      //   this.templatePath('src/widget/footer/footer.js'),
-      //   this.destinationPath(widgetPath + 'footer/footer.js')
-      // );
-      // this.fs.copy(
-      //   this.templatePath('src/widget/footer/footer.php'),
-      //   this.destinationPath(widgetPath + 'footer/footer.php')
-      // );
-      // //header 
-      // this.fs.copy(
-      //   this.templatePath('src/widget/header/header.php'),
-      //   this.destinationPath(widgetPath + 'header/header.php')
-      // );
-      // // userbar 
-      // this.fs.copy(
-      //   this.templatePath('src/widget/userbar/userbar.php'),
-      //   this.destinationPath(widgetPath + 'userbar/userbar.php')
-      // );
-      // this.fs.copy(
-      //   this.templatePath('src/widget/userbar/userbar.js'),
-      //   this.destinationPath(widgetPath + 'userbar/userbar.js')
-      // );
-      // this.fs.copy(
-      //   this.templatePath('src/widget/userbar/userbar.css'),
-      //   this.destinationPath(widgetPath + 'userbar/userbar.css')
-      // );
+     
       //static --projectName + 'static/';
       this.mkdir(staticPath+'/js');
       this.mkdir(staticPath+'/lib');
@@ -208,16 +154,11 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('.bowerrc'),
         this.destinationPath('.bowerrc')
       );
-      // this.fs.copy(
-      //   this.templatePath('jshintrc'),
-      //   this.destinationPath('/.jshintrc')
-      // );
     }
   },
 
   install: function () {
     this.installDependencies({
-     // skipInstall: this.options['skip-install']
       skipInstall: true
     });
   }
