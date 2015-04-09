@@ -50,11 +50,26 @@ module.exports = yeoman.generators.Base.extend({
           name: 'author',
           message: 'author:',
           default: ''
+        },
+        {
+            type: 'checkbox',
+            name: 'widgetTypes',
+            choices: ['widget.php', 'widget.class.php','widget.less','widget.js'],
+            message: 'j/k + enter选择您需要的文件类型，多选',
+            default:0,
+            validate: function(answers) {
+                if(answers.length>0){
+                  return true;
+                }else{
+                  return '必须选择一个';
+                }
+            }
         }
       ];
       this.prompt(prompts, function (props) {
         this.widgetName = props.widgetName;
         this.author = props.author;
+        this.widgetTypes = props.widgetTypes;
         done();
       }.bind(this));
   },
@@ -71,6 +86,7 @@ module.exports = yeoman.generators.Base.extend({
         var moduleName = this.moduleName;
         var name = nameReg.exec(moduleStr);
         var date = new Date().toISOString().substring(0, 10);
+        var widgetTypes = this.widgetTypes;
         if(name && name[3]){
           //匹配的第三个就是模块名
           moduleName = name[3]
@@ -104,28 +120,39 @@ module.exports = yeoman.generators.Base.extend({
             str += value.charAt(0).toUpperCase() + value.substr(1);
           });
         }
-        this.fs.copyTpl(
-          this.templatePath('widget_tpl.class.php'),
-          this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.class.php'),
-          {author:author,widgetName:str,moduleStr:moduleStr,date:date}
-        );
-        this.fs.copyTpl(
-          this.templatePath('widget_tpl.php'),
-          this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.php'),
-          {author:author,widgetName:widgetName,date:date}
-        );
 
-        this.fs.copyTpl(
-          this.templatePath('widget_tpl.js'),
-          this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.js'),
-          {author:author,widgetName:widgetName,date:date}
-        );
+        var fileConf =  {author:author,capWidgetName:str,widgetName:widgetName,moduleStr:moduleStr,date:date};
+        widgetTypes.forEach(function(value,index){
+         // this.log('widget_tpl'+value.substr(6)+'=========================')
+          this.fs.copyTpl(
+            this.templatePath('widget_tpl'+value.substr(6)),
+            this.destinationPath('src/widget/'+widgetName+'/'+widgetName+value.substr(6)),
+            fileConf
+          );
+        }.bind(this));
 
-        this.fs.copyTpl(
-          this.templatePath('widget_tpl.css'),
-          this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.css'),
-           {author:author,widgetName:widgetName,date:date}
-        );
+        // this.fs.copyTpl(
+        //   this.templatePath('widget_tpl.class.php'),
+        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.class.php'),
+        //   {author:author,capWidgetName:str,moduleStr:moduleStr,date:date}
+        // );
+        // this.fs.copyTpl(
+        //   this.templatePath('widget_tpl.php'),
+        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.php'),
+        //   {author:author,widgetName:widgetName,capWidgetName:str,date:date}
+        // );
+
+        // this.fs.copyTpl(
+        //   this.templatePath('widget_tpl.js'),
+        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.js'),
+        //   {author:author,widgetName:widgetName,capWidgetName:str,date:date}
+        // );
+
+        // this.fs.copyTpl(
+        //   this.templatePath('widget_tpl.less'),
+        //   this.destinationPath('src/widget/'+widgetName+'/'+widgetName+'.less'),
+        //    {author:author,widgetName:widgetName,capWidgetName:str,date:date}
+        // );
 
         this.mkdir('src/widget/'+widgetName+'/image');
     }

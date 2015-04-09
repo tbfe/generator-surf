@@ -107,6 +107,12 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('dev.sh')
       );
 
+      //svn .svnignore
+      this.fs.copy(
+        this.templatePath('.svnignore'),
+        this.destinationPath('.svnignore')
+      );
+
       //deploy.yml
       this.fs.copy(
         this.templatePath('deploy.yml'),
@@ -199,16 +205,20 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.editorconfig')
       );
       this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('/.jshintrc')
+        this.templatePath('.bowerrc'),
+        this.destinationPath('.bowerrc')
       );
+      // this.fs.copy(
+      //   this.templatePath('jshintrc'),
+      //   this.destinationPath('/.jshintrc')
+      // );
     }
   },
 
   install: function () {
     this.installDependencies({
      // skipInstall: this.options['skip-install']
-      skipInstall: false
+      skipInstall: true
     });
   }
 });

@@ -20,6 +20,7 @@ module.exports = yeoman.generators.Base.extend({
       }catch(e){
          this.log('读取生成模块配置出错，module.yml没找到，你可能执行的命令的路径不对');
       }
+      this.fileTypes = [];//选择要生成的类型
   },
 
   prompting: function () {
@@ -43,12 +44,27 @@ module.exports = yeoman.generators.Base.extend({
           type: 'input',
           name: 'author',
           message: 'author:',
-          default: 'shibiao',
+          default: '',
+        },
+        {
+            type: 'checkbox',
+            name: 'fileTypes',
+            choices: ['pagelet.php', 'pagelet.class.php','pagelet.less','pagelet.js'],
+            message: 'j/k + enter选择您需要的文件类型，多选',
+            default:0,
+            validate: function(answers) {
+                if(answers.length>0){
+                  return true;
+                }else{
+                  return '必须选择一个';
+                }
+            }
         }
       ];
       this.prompt(prompts, function (props) {
         this.pageletName = props.pageletName;
         this.author = props.author;
+        this.fileTypes = props.fileTypes;
         done();
       }.bind(this));
   },
@@ -89,29 +105,37 @@ module.exports = yeoman.generators.Base.extend({
             date:new Date().toISOString().substring(0, 10)
         };
         // frs camelize('frs')=>frs why?
-        this.fs.copyTpl(
-          this.templatePath('pagelet.php'),
-          this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.php'),
-          fileConf
-        );
+        // this.fs.copyTpl(
+        //   this.templatePath('pagelet.php'),
+        //   this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.php'),
+        //   fileConf
+        // );
 
-        this.fs.copyTpl(
-          this.templatePath('pagelet.class.php'),
-          this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.class.php'),
-          fileConf
-        );
+        // this.fs.copyTpl(
+        //   this.templatePath('pagelet.class.php'),
+        //   this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.class.php'),
+        //   fileConf
+        // );
 
-        this.fs.copyTpl(
-          this.templatePath('pagelet.css'),
-          this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.css'),
-          fileConf
-        );
+        // this.fs.copyTpl(
+        //   this.templatePath('pagelet.less'),
+        //   this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.less'),
+        //   fileConf
+        // );
 
-        this.fs.copyTpl(
-          this.templatePath('pagelet.js'),
-          this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.js'),
-          fileConf
-        );
+        // this.fs.copyTpl(
+        //   this.templatePath('pagelet.js'),
+        //   this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+'.js'),
+        //   fileConf
+        // );
+        var fileTypes = this.fileTypes;
+        fileTypes.forEach(function(value,index){
+          this.fs.copyTpl(
+            this.templatePath('pagelet'+value.substring(7)),
+            this.destinationPath('/src/pagelet/'+pageletName+'/'+pageletName+value.substring(7)),
+            fileConf
+          );
+        }.bind(this));
     }
 
     // projectfiles: function () {

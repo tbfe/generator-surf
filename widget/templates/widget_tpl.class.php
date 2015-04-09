@@ -5,7 +5,7 @@
  * @time: <%=date%>
  * @desp 
  */ 
-class <%=moduleStr%>_Widget_<%= widgetName%> {
+class <%=moduleStr%>_Widget_<%= capWidgetName%> {
 	public function init(){
 		
 	}
