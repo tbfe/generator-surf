@@ -54,7 +54,7 @@ module.exports = yeoman.generators.Base.extend({
             type: 'checkbox',
             name: 'widgetTypes',
             choices: ['widget.php', 'widget.class.php','widget.less','widget.js'],
-            message: 'j/k + enter选择您需要的文件类型，多选',
+            message: 'j/k + 空格键 选择您需要的文件类型，多选',
             default:0,
             validate: function(answers) {
                 if(answers.length>0){
