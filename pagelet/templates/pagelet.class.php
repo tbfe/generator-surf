@@ -2,7 +2,7 @@
 /**
  * @author: <%=author%>	
  * @time: <%=date%>
- * @desp 
+ * @desc 
  */ 
 class <%=moduleName%>_Pagelet_<%=pageletName%> {
 	public function init(){

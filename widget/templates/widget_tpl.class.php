@@ -3,7 +3,7 @@
 /**
  * @author: <%=author%>	
  * @time: <%=date%>
- * @desp 
+ * @desc 
  */ 
 class <%=moduleStr%>_Widget_<%= capWidgetName%> {
 	public function init(){

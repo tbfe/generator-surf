@@ -2,7 +2,7 @@
 /**
  * @author: <%=author%>	
  * @time: <%=date%>
- * @desp 
+ * @desc 
  */ 
 ?>
 <!doctype html>

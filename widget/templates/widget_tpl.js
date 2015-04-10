@@ -1,7 +1,7 @@
 /**
  * @author: <%=author%>	
  * @time: <%=date%>
- * @desp 
+ * @desc 
  */ 
  _.Module.define({
     sub: {
