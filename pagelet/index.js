@@ -45,6 +45,7 @@ module.exports = yeoman.generators.Base.extend({
           name: 'author',
           message: 'author:',
           default: '',
+          store:true
         },
         {
             type: 'checkbox',

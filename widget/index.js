@@ -48,7 +48,8 @@ module.exports = yeoman.generators.Base.extend({
           type: 'input',
           name: 'author',
           message: 'author:',
-          default: ''
+          default: '',
+          store:true
         },
         {
             type: 'checkbox',
@@ -115,7 +116,8 @@ module.exports = yeoman.generators.Base.extend({
           );
         }.bind(this));
 
-        this.mkdir('src/widget/'+widgetName+'/image');
+      //  this.mkdir('src/widget/'+widgetName+'/image');
+      //widget默认不用生成生成image ，asked by yongzheng
     }
   },
 

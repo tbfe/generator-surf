@@ -38,13 +38,14 @@ module.exports = yeoman.generators.Base.extend({
           type: 'input',
           name: 'author',
           message: 'author:',
-          default: ''
+          default: '',
+          store:true
         },
         {
             type: 'checkbox',
             name: 'fileTypes',
             choices: ['page.php','page.less','page.js'],
-            message: 'j/k + enter选择您需要的文件类型，多选',
+            message: 'j/k +空格键  选择您需要的文件类型，多选',
             default:0,
             validate: function(answers) {
                 if(answers.length>0){
@@ -55,29 +56,7 @@ module.exports = yeoman.generators.Base.extend({
             }
         }
       ];
-       // var aa = this.expand(this.templatePath('*.ejs'));
-       // // this.log("=====================");
-       // // this.log(aa.join('=\r\r'));
-       // // this.log("=====================");
-       // this.argument('app_name', {
-       //      required: false,
-       //      type: String,
-       //      desc: 'view name'
-       //  });
-       // console.log(this.app_name+"===========");
-       /**
-        * option 与 argument 功能有重复
-        * yo like:views aaaa --mocamoca
-        *这个时候得到的option是默认值，为啥？
-        *
-        */
-       // this.option('coffee',{
-       //      type: String,
-       //      desc: 'view name',
-       //      defaults:'===='
-       // });
-       // console.log("--------------"+this.options.coffee);
-       // console.log(this.options);
+      
       this.prompt(prompts, function (props) {
         this.pageName = props.pageName;
         this.author = props.author;
@@ -101,26 +80,10 @@ module.exports = yeoman.generators.Base.extend({
           fileConf
         );
       }.bind(this));
-      // tplConf.forEach(function  (value,index) {
-      //    this.fs.copyTpl(
-      //     this.templatePath(value),
-      //     this.destinationPath('src/page/'+pageName+'/'+pageName+value.substr(4)),
-      //     fileConf
-      //   );
-      // }.bind(this));
+     
       this.mkdir('src/page/'+pageName +'/image');
     }
 
-    // projectfiles: function () {
-    //   this.fs.copy(
-    //     this.templatePath('editorconfig'),
-    //     this.destinationPath('.editorconfig')
-    //   );
-    //   this.fs.copy(
-    //     this.templatePath('jshintrc'),
-    //     this.destinationPath('.jshintrc')
-    //   );
-    // }
   },
 
   end:function  () {
