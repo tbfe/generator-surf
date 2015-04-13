@@ -1,13 +1,13 @@
 
 <?php
 /**
- * @author: <%=author%>	
+ * @author: <%=author%>
  * @time: <%=date%>
- * @desc 
- */ 
-class <%=moduleStr%>_Widget_<%= capWidgetName%> {
+ * @desc
+ */
+class <%=capitalizedModuleName%>_Widget_<%= capWidgetName%> {
 	public function init(){
-		
+
 	}
 }
 ?>

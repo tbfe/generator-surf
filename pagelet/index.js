@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var yaml = require('js-yaml');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -72,22 +73,12 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-        var nameReg = /\s*(name:)(\s+)(\w+)(\r\n)+/;//匹配module.yml中的name
         var pageletName = this.pageletName;
         var renderPageletName = pageletName;
-        var tmp = [];
         var moduleStr = this.moduleStr;
-        var moduleName = '';
-        var name = nameReg.exec(moduleStr);
+        var moduleConfig = yaml.load(moduleStr);
+        var moduleName = moduleConfig.name;
         var fileConf = {};
-        if(name && name[3]){
-          //匹配的第三个就是模块名
-         // moduleName = this._.camelize(name[3]);
-            moduleName = name[3].charAt(0).toUpperCase() + name[3].substr(1);
-        }else{
-          // 没取到争取的moduleName
-          moduleName = '';
-        }
          renderPageletName = this._.camelize(pageletName).charAt(0).toUpperCase()+this._.camelize(pageletName).substr(1);
         // if(pageletName.indexOf('_') > -1){
         //   // pageletName = '';
@@ -101,6 +92,7 @@ module.exports = yeoman.generators.Base.extend({
         fileConf =  {
             author:author,
             moduleName:moduleName,
+            capitalizedModuleName: moduleName.charAt(0).toUpperCase() + moduleName.substr(1),
             pageletName:renderPageletName,
             tplPageletName:pageletName,//。php中class=""中pageletname名字首字母不大写
             date:new Date().toISOString().substring(0, 10)
@@ -157,8 +149,5 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies({
-      skipInstall: true
-    });
   }
 });

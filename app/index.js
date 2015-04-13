@@ -39,7 +39,7 @@ module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
-    
+
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the solid ' + chalk.red('Surf') + ' generator!'
@@ -73,25 +73,20 @@ module.exports = yeoman.generators.Base.extend({
     app: function () {
       // for bigpipe moduel code
       var projectName = this.projectName;
-      var moduleConf =   'src/conf/';
       var pagePath =   'src/page/';
       var pageletPath =   'src/pagelet/';
       var widgetPath =   'src/widget/';
       var staticPath =   'src/static/';
       var commonConfig = '';
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('/package.json')
-      );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('_bower.json'),
-        this.destinationPath('/bower.json')
+        this.destinationPath('bower.json'),
+        {
+          projectName:projectName
+        }
       );
 
-      //__module_conf.php 
-      this.mkdir(moduleConf);
-    
-      //build.sh 
+      //build.sh
       this.fs.copy(
         this.templatePath('build.sh'),
         this.destinationPath('build.sh')
@@ -128,7 +123,7 @@ module.exports = yeoman.generators.Base.extend({
         }
       );
 
-      //page 
+      //page
       this.mkdir(pagePath);
 
       //pagelet ----projectName + '/pagelet/';
@@ -136,10 +131,9 @@ module.exports = yeoman.generators.Base.extend({
 
       //widget --projectName + '/widget/';
       this.mkdir(widgetPath);
-     
+
       //static --projectName + 'static/';
-      this.mkdir(staticPath+'/js');
-      this.mkdir(staticPath+'/lib');
+      this.mkdir(staticPath);
     },
 
     projectfiles: function () {
@@ -158,8 +152,5 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies({
-      skipInstall: true
-    });
   }
 });

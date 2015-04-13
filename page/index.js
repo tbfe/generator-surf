@@ -56,7 +56,7 @@ module.exports = yeoman.generators.Base.extend({
             }
         }
       ];
-      
+
       this.prompt(prompts, function (props) {
         this.pageName = props.pageName;
         this.author = props.author;
@@ -80,8 +80,6 @@ module.exports = yeoman.generators.Base.extend({
           fileConf
         );
       }.bind(this));
-     
-      this.mkdir('src/page/'+pageName +'/image');
     }
 
   },
@@ -92,8 +90,5 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies({
-      skipInstall: true
-    });
   }
 });

@@ -1,10 +1,10 @@
 <?php
 /**
- * @author: <%=author%>	
+ * @author: <%=author%>
  * @time: <%=date%>
- * @desc 
- */ 
-class <%=moduleName%>_Pagelet_<%=pageletName%> {
+ * @desc
+ */
+class <%=capitalizedModuleName%>_Pagelet_<%=pageletName%> {
 	public function init(){
 
 	}

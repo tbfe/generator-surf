@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var yaml = require('js-yaml');
 //var astQuery = require('ast-query');
 
 module.exports = yeoman.generators.Base.extend({
@@ -24,7 +25,7 @@ module.exports = yeoman.generators.Base.extend({
           this.existedWidgetFiles.push(reg.exec(v)[1]);
        }
       }.bind(this));
-      
+
   },
 
   prompting: function () {
@@ -77,25 +78,17 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
         var widgetName = this.widgetName;
-        var nameReg = /\s*(name:)(\s+)(\w+)(\r\n)+/;//匹配module.yml中的name
         var author = this.author;
         var tmp = [];
         var str = widgetName;
-        var repModStr = '';
         var moduleStr = this.moduleStr;
         var moduleName = this.moduleName;
-        var name = nameReg.exec(moduleStr);
         var date = new Date().toISOString().substring(0, 10);
         var widgetTypes = this.widgetTypes;
-        if(name && name[3]){
-          //匹配的第三个就是模块名
-          moduleName = name[3]
-        }else{
-          // 没取到争取的moduleName
-          moduleName = '';
-        }
+        var moduleConfig = yaml.load(moduleStr);
+        moduleName = moduleConfig.name;
         this.moduleName = moduleName;
-
+        this.log(moduleName);
         if(moduleName){
            moduleStr = moduleName.charAt(0).toUpperCase()+moduleName.substr(1);
         }
@@ -107,7 +100,14 @@ module.exports = yeoman.generators.Base.extend({
           });
         }
 
-        var fileConf =  {author:author,capWidgetName:str,widgetName:widgetName,moduleStr:moduleStr,date:date};
+        var fileConf =  {
+            author:author,
+            capWidgetName:str,
+            widgetName:widgetName,
+            moduleName:moduleName,
+            capitalizedModuleName: moduleName.charAt(0).toUpperCase() + moduleName.substr(1),
+            date:date
+        };
         widgetTypes.forEach(function(value,index){
           this.fs.copyTpl(
             this.templatePath('widget_tpl'+value.substr(6)),
@@ -116,8 +116,6 @@ module.exports = yeoman.generators.Base.extend({
           );
         }.bind(this));
 
-      //  this.mkdir('src/widget/'+widgetName+'/image');
-      //widget默认不用生成生成image ，asked by yongzheng
     }
   },
 
@@ -127,8 +125,5 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies({
-      skipInstall: true
-    });
   }
 });

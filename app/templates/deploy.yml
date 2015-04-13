@@ -10,6 +10,3 @@ tplPort: 8080
 staticPath: /home/work/static/static.tieba.baidu.com
 #模版文件部署路径
 tplPath: /home/work/orp/bigpipe
-#地址替换规则
-replace:
-  __foo__|%%foo%%: bar
