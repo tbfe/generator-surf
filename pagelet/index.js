@@ -51,7 +51,7 @@ module.exports = yeoman.generators.Base.extend({
         {
             type: 'checkbox',
             name: 'fileTypes',
-            choices: ['pagelet.php', 'pagelet.class.php','pagelet.less','pagelet.js'],
+            choices: ['pagelet.php', 'pagelet.class.php','pagelet.yml','pagelet.less','pagelet.js'],
             message: 'j/k + enter选择您需要的文件类型，多选',
             default:0,
             validate: function(answers) {
