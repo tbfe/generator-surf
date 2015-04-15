@@ -4,7 +4,7 @@
  * @time: <%=date%>
  * @desc
  */
-class <%=capitalizedModuleName%>_Pagelet_<%=pageletName%> {
+class <%=capitalizedModuleName%>_Pagelet_<%=capitalizePageletName%> {
 	public function init(){
 
 	}

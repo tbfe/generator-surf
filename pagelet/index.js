@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var yaml = require('js-yaml');
+var titleCase = require('title-case');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -74,12 +75,12 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function () {
         var pageletName = this.pageletName;
-        var renderPageletName = pageletName;
+       // var renderPageletName = pageletName;
         var moduleStr = this.moduleStr;
         var moduleConfig = yaml.load(moduleStr);
         var moduleName = moduleConfig.name;
         var fileConf = {};
-         renderPageletName = this._.camelize(pageletName).charAt(0).toUpperCase()+this._.camelize(pageletName).substr(1);
+        //renderPageletName = this._.camelize(pageletName).charAt(0).toUpperCase()+this._.camelize(pageletName).substr(1);
         // if(pageletName.indexOf('_') > -1){
         //   // pageletName = '';
         //   // tmp = pageletName.split('_');
@@ -89,12 +90,14 @@ module.exports = yeoman.generators.Base.extend({
         //    renderPageletName = this._.camelize(pageletName).charAt(0).toUpperCase()+this._.camelize(pageletName).substr(1);
         // }
         var author = this.author;
+        var capitalizedModuleName = moduleName && titleCase(moduleName) && titleCase(moduleName).replace(/\W/g,'_');
+        var capitalizePageletName = pageletName && titleCase(pageletName) && titleCase(pageletName).replace(/\W/g,'_');
         fileConf =  {
             author:author,
             moduleName:moduleName,
-            capitalizedModuleName: moduleName.charAt(0).toUpperCase() + moduleName.substr(1),
-            pageletName:renderPageletName,
-            tplPageletName:pageletName,//。php中class=""中pageletname名字首字母不大写
+            pageletName:pageletName,
+            capitalizedModuleName: capitalizedModuleName,
+            capitalizePageletName:capitalizePageletName,
             date:new Date().toISOString().substring(0, 10)
         };
         // frs camelize('frs')=>frs why?
