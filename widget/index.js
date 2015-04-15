@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var yaml = require('js-yaml');
+var titleCase = require('title-case');
 //var astQuery = require('ast-query');
 
 module.exports = yeoman.generators.Base.extend({
@@ -89,7 +90,7 @@ module.exports = yeoman.generators.Base.extend({
         moduleName = moduleConfig.name;
         this.moduleName = moduleName;
         this.log(moduleName);
-        if(moduleName){
+        /*if(moduleName){
            moduleStr = moduleName.charAt(0).toUpperCase()+moduleName.substr(1);
         }
         if(widgetName.indexOf('_')){
@@ -98,14 +99,19 @@ module.exports = yeoman.generators.Base.extend({
           tmp.forEach(function(value,index){
             str += value.charAt(0).toUpperCase() + value.substr(1);
           });
-        }
+        }*/
+        // title case 的作用 frs_test => Frs Test,
+
+        var capWidgetName = widgetName && titleCase(widgetName) && titleCase(widgetName).replace(/\W/g, '_');
+
+        var capitalizedModuleName = moduleName && titleCase(moduleName) && titleCase(moduleName).replace(/\W/g, '_');
 
         var fileConf =  {
             author:author,
-            capWidgetName:str,
             widgetName:widgetName,
             moduleName:moduleName,
-            capitalizedModuleName: moduleName.charAt(0).toUpperCase() + moduleName.substr(1),
+            capWidgetName:capWidgetName,
+            capitalizedModuleName: capitalizedModuleName,
             date:date
         };
         widgetTypes.forEach(function(value,index){
