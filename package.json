@@ -29,7 +29,8 @@
     "chalk": "^1.0.0",
     "js-yaml": "^3.2.7",
     "yeoman-generator": "^0.18.9",
-    "yosay": "^1.0.2"
+    "yosay": "^1.0.2",
+    "title-case":"*"
   },
   "devDependencies": {
     "mocha": "*"
