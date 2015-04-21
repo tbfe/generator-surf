@@ -3,7 +3,7 @@
 /**
  * @author: <%=author%>
  * @time: <%=date%>
- * @desc
+ * @desc: 
  */
 class <%=capitalizedModuleName%>_Widget_<%= capWidgetName%> {
 	public function init(){

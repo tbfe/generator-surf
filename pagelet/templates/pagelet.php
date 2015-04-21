@@ -2,7 +2,7 @@
 /**
  * @author: <%=author%>
  * @time: <%=date%>
- * @desc
+ * @desc: 
  */
 ?>
 <div class="<%=moduleName%>-pagelet-<%=pageletName%>">

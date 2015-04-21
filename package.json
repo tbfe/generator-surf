@@ -4,7 +4,7 @@
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "shibiaoz/generator-surf",
+  "repository": "tbfe/generator-surf",
   "author": {
     "name": "shibiaoz",
     "email": "shibiaoz@sina.cn",

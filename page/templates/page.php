@@ -2,6 +2,6 @@
 /**
  * @author: <%=author%>
  * @time: <%=date%>
- * @desc
+ * @desc: 
  */
 ?>
