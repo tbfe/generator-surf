@@ -3,7 +3,7 @@
  * @time: <%=date%>
  * @desc: 
  */
- _.Module.define({
+_.Module.define({
     sub: {
         initial: function () {
             
