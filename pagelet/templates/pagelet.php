@@ -1,8 +1,9 @@
 <?php
 /**
- * @author: <%=author%>
- * @time: <%=date%>
- * @desc: 
+ * TODO
+ * 
+ * @author <%=author%>
+ * @since <%=date%>
  */
 ?>
 <div class="<%=moduleName%>-pagelet-<%=pageletName%>">

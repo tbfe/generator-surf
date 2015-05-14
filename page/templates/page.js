@@ -1,10 +1,14 @@
 /**
- * @author: <%=author%>	
- * @time: <%=date%>
- * @desc: 
+ * @file TODO
+ * @author <%=author%>	
+ * @since <%=date%>
  */ 
 _.Module.define({
-    sub: {
+    sub:
+    {
+        /**
+         * @constructs
+         */
         initial: function () {
           
         }

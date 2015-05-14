@@ -1,11 +1,16 @@
 
 <?php
 /**
- * @author: <%=author%>
- * @time: <%=date%>
- * @desc: 
+ * TODO
+ * 
+ * @author <%=author%>
+ * @since <%=date%>
  */
+
 class <%=capitalizedModuleName%>_Widget_<%= capWidgetName%> {
+    /**
+     * The class init
+     */
 	public function init(){
 
 	}
