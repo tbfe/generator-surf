@@ -1,18 +1,15 @@
 /**
  * @file TODO
- * @author <%=author%>	
+ * @author <%=author%>
  * @since <%=date%>
  * @class <%= moduleName %>/widget/<%= widgetName %>
- */ 
+ */
+/* globals  _ */
 _.Module.define({
-    sub: 
-    /** 
+    /**
      * @lends <%= moduleName %>/widget/<%= widgetName %>.prototype
      */
-    {
-        /**
-         * @constructs
-         */
+    sub: {
         initial: function () {
         }
     }

@@ -7,8 +7,8 @@
  */
 ?>
 <div class="<%=moduleName%>-pagelet-<%=pageletName%>">
-	我是Platform的aside-pagelet";
+    我是<%=moduleName%>的<%=pageletName%>的pagelet";
 </div>
 <script type="text/javascript">
-	console.log("I`m common pagelet <%=pageletName%>");
+    console.log("I`m common pagelet <%=pageletName%>");
 </script>

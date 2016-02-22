@@ -1,4 +1,3 @@
-
 <?php
 /**
  * TODO
@@ -11,8 +10,8 @@ class <%=capitalizedModuleName%>_Widget_<%= capWidgetName%> {
     /**
      * The class init
      */
-	public function init(){
+    public function init() {
 
-	}
+    }
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
 /**
  * TODO
- * 
- * @author <%=author%>	
+ *
+ * @author <%=author%>
  * @since <%=date%>
  */ 
 ?>
